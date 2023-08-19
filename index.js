@@ -15,7 +15,9 @@ app.get("/getRequest", (req, res) => {
 });
 
 app.post("/postRequest", (req, res) => {
-    console.log("Logging request:" + req.toString());
-    console.log("Logging body:" + req.body.toString());
+    console.log("Logging request:");
+    console.log(req);
+    console.log("Logging body:");
+    console.log(req.body);
     res.send("Hello post")
 });
