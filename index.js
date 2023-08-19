@@ -1,17 +1,22 @@
-const app = require('express')();
+const express = require('express');
 const bodyParser = require('body-parser');
 
-const PORT = 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json()); // Use bodyParser.json() without arguments
+app.use(bodyParser.json());
 
-app.listen(
-    PORT,
-    () => console.log("Server listening on : " + PORT)
-);
+app.post('/iap_rtn_endpoint', (req, res) => {
+    try {
+        console.log('Received IAP RTN notification:');
+        console.log(req.body);
+        res.status(200).send('OK');
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
-app.post("/postRequest", (req, res) => {
-    console.log("Logging request:");
-    console.log(req.body); // Log the parsed body
-    res.send("Hello post");
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
 });
