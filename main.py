@@ -11,5 +11,11 @@ def log_post_request():
 
     return 'Request logged successfully', 200
 
+@app.route('/', methods=['POST'])
+def log_post_request():
+    print("Get Request")
+
+    return 'get Request logged successfully', 200
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
